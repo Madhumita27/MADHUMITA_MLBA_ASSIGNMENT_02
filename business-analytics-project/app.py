@@ -7,6 +7,7 @@ risk prediction with a business recommendation.
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 
 st.set_page_config(page_title="Customer Churn Predictor", page_icon="📉", layout="centered")
 
@@ -16,7 +17,8 @@ st.set_page_config(page_title="Customer Churn Predictor", page_icon="📉", layo
 # ---------------------------------------------------------------
 @st.cache_resource
 def load_artifact():
-    return joblib.load("model.pkl")
+    model_path = os.path.join(os.path.dirname(__file__), "model.pkl")
+    return joblib.load(model_path)
 
 artifact = load_artifact()
 model = artifact["model"]
